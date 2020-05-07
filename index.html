@@ -1,36 +1,199 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-   <img class="bg" alt="background"  src="https://i.pinimg.com/564x/78/0d/cc/780dcc632f14e03ff1683763f4917255.jpg">
- <div class="cc"> 
-     <div class="blur"></div>
-      <img class="poster" src="https://upload.wikimedia.org/wikipedia/en/7/73/Selena_Gomez_and_Marshmello_Wolves.jpg">
- </div>
- <div class="ran">
-    <audio controls>
-        <source src="wolves.mp3.mp3">
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+ </head>
+ <body>
+    <img class="bg" src="attention.png">
+
+    <audio class="song" controls src="Attention.mp3"></audio>
+     <div class="container">
+
+   <center> <img class="bg1" src="attention.png">
+     <div class="titis">
+        <h1 class="title">Attention</h1>
+        <h3 class="artist">charlie puth</h3>
+        <input
+        type="range"
+        min="0"
+        max=""
+        class="progressBar"
+        value="0"
+    onchange="updatee()"
+    </div>
     
-       
-      </audio>
-      
-     <input type="range">
- </div>
- <div class="btns">
-     <img class="play" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQLJ8zywQiFVuPNZ-Q0TNVgm_CE8Cf-1O3yNPDvz752ssoEOuYP&usqp=CAU"/>
-<img class="prev" src="https://cdn1.iconfinder.com/data/icons/music-11/24/Last-512.png">
-<img class="next" src="https://cdn1.iconfinder.com/data/icons/music-11/24/Last-512.png">
-  <img class="pause" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSjhWXLJrDDr10LsXcLH22SFtv0MITQicpJB6PRuRawaTFXkdAw&usqp=CAU"/>
-</div>
-<style>
-body{
-    background-color:white;
+   <div class="images"> <img class="next" onclick="prev()" src="next-removebg-preview.png">
+     <img class="pp" onclick="playpause()" src="pp2-removebg-preview.png">
+
+     <img  onclick="next()" class="prev"  src="next-removebg-preview.png">
+    </div> </center>
+     </div>
+     <style>
+    html,body{
+        background:black;
+        padding: 0%;
+        margin: 0;
+    } 
+    .titis{
+        position: relative;
+        color: aliceblue;
+    }
+    .container{
+        padding-top: 40px;
+    } 
+    .bg{
+        height: 100%;
+    width: 100%;
+    margin: auto;
+    position: fixed;
+    top: 0;
+    filter: blur(77px);
+   right: 0;
+   bottom: 0;    
+   left: 0;
+    }
+.bg1{
+    border-radius: 50%;
+position:relative;
+height: 200px;
+width: 200px;
+box-shadow: 0 0 50px rgb(12, 23, 0);
+
+}
+.pp{
+    height: 60px;
+    filter: invert();
+}
+.next,.prev{
+    height: 55px;
+filter: invert();
+padding: 30px;
+
+}
+.next{
+    transform: rotate(180deg);
+}
+.images{
+    
+    padding-top: 70px;
+align-items: center;
+    display: inline-flex;
+    justify-content: center;
+}
+.progressBar{
+    -webkit-appearance: none;
+  position: absolute;
+  height: 6px;
+  border-radius: 10px;
+  width: 304px;
+  margin: auto;
+  right: 0;
+  left: 0;
+  top: 23%;
+  bottom: 0;
+  z-index: 7;
+  background:white;
+}
+.progressBar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 14px;
+  width: 14px;
+  background: linear-gradient(white, wheat);
+  border-radius: 50%;
 }
 
-</style>
-</body>
-</html>
+
+     </style>
+
+     <script>
+         var songs=["Attention.mp3","faded.mp3","sleep.mp3","friends.mp3","talk.mp3","say my name.mp3","I'm A Mess.mp3","wolves.mp3.mp3"]
+var title=["Attention","Faded","Sing me to sleep","Friends","We don't talk anymore","Say my name","I'm A Mess","wolves"]
+var artist=["Charlie puth","Alan Walker","Alan Walker","Marshmello,Annie-Marie","Charlie Puth","David Guetta,Bebe Rexha,J Balvin","Bebe Rexha","Marshmello,Selena Gomez"]
+ var pic=["attention.png","fadedpic.jpg","singme.jpg","freinds.jpg","wedont.jpg","say.png","i a mess.jpg","wolvess.jpg"];
+  var isplaying=true;
+  var cs=0;
+  const p=document.querySelector(".pp");
+
+  const a=document.querySelector(".artist");
+  const b=document.querySelector(".title");
+const bg=document.querySelector(".bg");
+const bgg=document.querySelector(".bg1");
+
+  const music=document.querySelector(".song");
+  
+  function playpause() {
+  var music=document.querySelector(".song");
+  const p=document.querySelector(".pp");
+
+
+       if(isplaying)
+
+   {
+       p.src="pp1-removebg-preview.png"
+music.play();
+isplaying=false;}
+else{
+    p.src="pp2-removebg-preview.png"
+music.pause();
+isplaying=true;
+   }}
+   
+   
+     function prev(){
+  var music=document.querySelector(".song");
+  
+       if(cs<=0)
+       cs=7;
+       else
+     {  cs--;}
+
+music.src=songs[cs];
+p.src="pp1-removebg-preview.png"
+a.innerHTML=artist[cs];
+b.innerHTML=title[cs];
+bg.src=pic[cs];
+bgg.src=pic[cs];
+
+music.play();
+
+
+   }
+   function next(){
+  const music=document.querySelector(".song");
+  const t =document.querySelector(".title");
+       if(cs>=7)
+       cs=0;
+       else
+     {  cs++;
+
+music.src=songs[cs];
+a.innerHTML=artist[cs];
+b.innerHTML=title[cs];
+bg.src=pic[cs];
+bgg.src=pic[cs];
+p.src="pp1-removebg-preview.png"
+music.play();
+   }}
+   setInterval(() => {
+ if(document.querySelector(".song").currentTime==document.querySelector(".song").duration)
+{
+    next();
+    playpause();
+}
+   },1)
+    function updatee(){
+        const progressBar = document.querySelector(".progressBar");
+    document.querySelector(".song").currentTime = progressBar.value;
+    }
+function update(){
+    const progressBar = document.querySelector(".progressBar");
+  progressBar.max = document.querySelector(".song").duration;
+  progressBar.value = document.querySelector(".song").currentTime;
+}
+     setInterval(update,1) ;
+   
+   </script>
+ </body>
+ </html>
